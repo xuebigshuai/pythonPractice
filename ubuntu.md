@@ -179,4 +179,46 @@ $shutdown -c
 * 远程登陆和复制文件
   * ssh
   * scp
+* 域名和端口
+  * ssh 默认端口为22
+  * web服务器 80
+  * https 443
+  * ftp 21
+  * 默认的端口可以省略
+* ssh客户端的简单使用
+  * ssh [-p port] user@remote
+     * user 是在远程机器上的用户名，如果不指定的话默认是当前用户
+     * remote 远程机器的地址
+     * port 是 sshServer的端口，不指定的话，默认是22
+     * 使用exit 退出当前的登陆用户
+   * ssh只能在Linux和Unix下使用，Windows下载ssh工具
+   （xshell或者putty或者ssh）
+* scp 的使用（secure copy）
+  * 只能在Linux或者unix下使用，window下使用ftp传输文件
+  * ssh [-P port] user@remote p是大写
+  * 将本地Desktop目录下的01.py拷贝到远程家目录下的 Desktop/01.py,注意：':'后面的路径如果不是绝对路径，则以用户的家目录作为参照路径。
+  ```
+  scp -P port Desktop/01.py user@remote:Desktop/01.py
+  ```
+  * 将远程文件复制到本地‘
+  ```
+  scp -P port user@remote:Desktop/01.py Desktop/01.py
+  ```
+  * 加上 -r 可以选择上传文件夹
+  ```
+  scp -r demo user@remote:Desktop
+  ```
+### SSH高级应用
+  * 免密登录
+  * 配置别名  
+ |提示：有关SSH配置信息都保存在用户家目录下的.ssh目录下
+#### 免密登陆
+  * 配置公钥
+  ```
+  执行 ssh-keygen 即可生成ssh钥匙
+  ``` 
+  * 上传公钥到服务器上
+  ```
+  执行ssh-copy-id -p port user@remote(ip),可让远程服务器记住我们的公钥。
+  ```
 
