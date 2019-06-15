@@ -23,7 +23,7 @@ var Waiter = function() {
       dfd = dfd.filter(item => {
         return !item.resolved || item.rejected
       })
-      dfd.length === 0 &&   _exec(doneArr)
+      dfd.length === 0 && _exec(doneArr)
     }
     reject() {
       this.rejected = true
@@ -76,22 +76,22 @@ var Waiter = function() {
 }
 var waiter = new Waiter()
 
-var first = function() {
+var first = (function() {
   var dtd = waiter.Deferred()
   setTimeout(() => {
     console.log("first")
     dtd.resolve()
   }, 5000)
   return dtd
-}()
-var second = function() {
+})()
+var second = (function() {
   var dtd = waiter.Deferred()
   setTimeout(() => {
     console.log("second")
     dtd.resolve()
   }, 10000)
   return dtd
-}()
+})()
 waiter.when(first, second).done(
   function() {
     console.log("success")

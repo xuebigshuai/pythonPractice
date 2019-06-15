@@ -27,5 +27,6 @@ class WaiterClass {
 const people = new WaiterClass()
 console.log(people.FullName)
 console.log(people.getName())
-setTimeout(()=>{console.log(5000)},5000)
-
+setTimeout(() => {
+  console.log(5000)
+}, 5000)
